@@ -1,5 +1,5 @@
 svg4everybody(); //for svg spite in ie
-objectFitImages();
+// objectFitImages();
 
 
 let $body,

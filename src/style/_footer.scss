@@ -1,0 +1,4 @@
+.footer {
+    @include rule(margin-top, (xl: 20px 0 16px, lg: 0));
+    @include rule(margin, (xl: 20px 0 16px, lg: 0), max);
+}

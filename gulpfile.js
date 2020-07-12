@@ -10,7 +10,8 @@ var gulp = require('gulp'),
     pngquant = require('imagemin-pngquant'),
     browserSync = require("browser-sync"),
     concat = require('gulp-concat'),
-    reload = browserSync.reload;
+    reload = browserSync.reload,
+    groupCssMediaQueries = require('gulp-group-css-media-queries');
 
 var path = {
     build: { //Тут мы укажем куда складывать готовые после сборки файлы
@@ -27,7 +28,8 @@ var path = {
         js: [
 
             'node_modules/jquery/dist/jquery.min.js',
-            //'node_modules/slick-carousel/slick/slick.min.js',
+            'node_modules/slick-carousel/slick/slick.min.js',
+            // 'node_modules/swiper/swiper-bundle.js',
             // 'node_modules/object-fit-images/dist/ofi.min.js',
             'node_modules/svg4everybody/dist/svg4everybody.legacy.min.js',
             'node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.js',
@@ -63,7 +65,7 @@ var config = {
     // tunnel: true,
     host: 'localhost',
     port: 9000,
-    logPrefix: "Frontend_Devil"
+    logPrefix: ""
 };
 gulp.task('html:build', function () {
     return gulp.src(path.src.html) //Выберем файлы по нужному пути
@@ -87,6 +89,7 @@ gulp.task('style:build', function () {
             overrideBrowserslist: ['last 10 versions'],
             cascade: false
         })) //Добавим вендорные префиксы
+        .pipe(groupCssMediaQueries()) //Сожмем
         .pipe(cssmin()) //Сожмем
         .pipe(gulp.dest(path.build.css)) //И в build
         .pipe(reload({stream: true}));

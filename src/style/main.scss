@@ -1,17 +1,33 @@
 @import '_libs';
+@import '_varaibles';
+@import '_mixins';
 @import '_fonts';
 @import '_ui';
+@import '_header';
+@import '_footer';
+@import '_main-page';
 
 
 
 
 body {
   min-width: 320px;
-  font-family: sans-serif;
-  font-size: 20px;
+  font-family: $ffMontserrat;
+  font-size: 18px;
   line-height: 1.15;
   color: #000000;
   background: #fff;
+}
+
+.container {
+  @include media-breakpoint-up(lg) {
+    max-width: 1180px;
+  }
+}
+
+
+.main {
+  padding: 35px 0 105px;
 }
 
 
