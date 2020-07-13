@@ -19,8 +19,11 @@ body {
   background: #fff;
 }
 
+.wrapper {
+  overflow: hidden;
+}
 .container {
-  @include media-breakpoint-up(lg) {
+  @include media-breakpoint-up(xl) {
     max-width: 1180px;
   }
 }

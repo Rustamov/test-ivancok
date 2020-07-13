@@ -1,9 +1,16 @@
 .s-banner {
     position: relative;
-    min-height: 500px;
-    padding: 30px 15px;
+    min-height: 200px;
+    margin: 0 0 40px;
+    padding: 0;
     color: #fff;
 
+    &::before {
+        content: '';
+        display: block;
+        padding-top: 41.75%;
+
+    }
     &::after {
         content: '';
         position: absolute;
@@ -16,13 +23,226 @@
     }
 
     &__title {
-        position: relative;
+        margin: 0;
+        position: absolute;
+        top: 30px;
+        left: 15px;
+        right: 15px;
         z-index: 1;
+        font-size: 24px;
+        line-height: 1.15;
+        font-weight: 800;
+        text-transform: uppercase;
     }
 
-    &__img {
+    &__image {
       @include fill-img;
       z-index: 0;
     }
+
+    &__link {
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background: none;
+    }
+
+}
+
+
+.s-text {
+    margin: 0 0 60px;
+
+    &__title {
+        display: block;
+        margin: 0 0 1em;
+        font-size: 34px;
+        line-height: (41/34);
+        letter-spacing: 0.03em;
+    }
+
+    &__text {}
+}
+
+
+.s-features {
+    margin: 0 0 75px;
+
+
+    &__list {
+        // display: flex;
+    }
+
+    &__item {
+        position: relative;
+        @include rule(min-height, (xs: auto, md: 210px));
+        padding: 15px 25px 30px 20px;
+        background: #FFF5E9;
+        height: 100%;
+
+        &::before {
+            @include triangle(#fff, right, 32px);
+            top: -22px;
+            right: 26px;
+            z-index: 1;
+            transform: rotate(-45deg);
+            // border: 1px solid #000;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 20px;
+            height: 20px;
+            border: 3px solid $color2;
+            border-top: none;
+            border-left: none;
+        }
+        
+            
+
+        &-number {
+            display: block;
+            margin: 0 0 20px;
+            font-size: 42px;
+            line-height: 1;
+            font-weight: 800;
+            color: $color2;
+        }
+
+        &-text {
+            display: block;
+            margin: 0;
+            font-size: 16px;
+            color: #000;
+        }
+    }
+}
+
+
+.s-clients {
+	padding: 60px 0 40px;
+    
+    &__top {
+        margin: 0 0 30px;
+        display: flex;
+        align-items: center;
+
+        &-col-1 {
+            flex-grow: 1;
+            margin-right: 30px;
+        }
+        &-col-2 {
+            margin-right: 30px;
+        }
+    }
+
+	&__title {
+		display: block;
+		max-width: 500px;
+		margin: 0;
+        font-size: 30px;
+        text-transform: none;
+	}
+
+	&__link-all {
+        color: $color2;
+        font-size: 1rem;
+        text-decoration: underline;
+	}
+	
+	&__controls {
+        display: flex;
+        align-items: center;
+
+		&-prev {
+			margin-right: 15px;
+		}
+
+		.btn-arrow  {
+			// opacity: 0;
+			pointer-events: none;
+
+			&.slick-arrow {
+				opacity: 1;
+				pointer-events: visible;
+			}
+		}
+	}
+
+	&__slider {
+        margin: 0 -15px 0;
+		&-item {
+            padding: 0 15px;
+			outline: none;
+
+			&:not(.slick-slide):not(:first-child) {
+				display: none;
+			}
+		}
+	}
+
+	&__item {
+		height: 150px;
+		width: 100%;
+		
+        display: flex;
+        align-items: center;
+		padding: 10px;
+
+
+		border: 1px solid $color4;
+		
+
+
+		&-logo {
+			display: block;
+            height: auto;
+            max-height: 100%;
+			margin: 0;
+
+			&-img {
+                display: block;
+                width: auto;
+				height: auto;
+                max-height: 100%;
+			}
+		}
+
+		&-text {
+			margin: 0 0 15px;
+		}
+
+		&-link {
+			color: #5665EB;
+			text-decoration: none;
+
+			&:hover,
+			&:active {
+				color: darken(#5665EB, 10);
+			}
+		}
+
+		&-img {
+			&-wrap {
+				margin: 0 0 25px;
+			}
+		}
+	}
+
+
+	&__next-slide-button {
+		right: 0;
+	}
+
+	&__prev-slide-button {
+		right: 68px;
+	}
+
 
 }

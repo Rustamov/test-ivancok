@@ -15,14 +15,17 @@
 @function px-to-rem($px) {
   @return ($px/$rem) + rem; 
 }
-
+img,
+frame {
+  max-width: 100%;
+}
 a {
   transition: color 0.2s, border 0.2s; 
 }
 
 .text {
   line-height: 1.25;
-  font-size: px-to-rem(20);
+  font-size: 1rem;
   font-weight: 400;
   font-style: normal;
 
@@ -35,6 +38,7 @@ a {
     margin: 0.8em 0 0.4em;
   }
 
+  
   h1:first-child,
   h2:first-child,
   h3:first-child,
@@ -42,6 +46,10 @@ a {
   h5:first-child,
   h6:first-child {
     margin-top: 0;
+  }
+
+  h2 {
+   font-size: 20px; 
   }
 
   ul {
@@ -164,6 +172,15 @@ a {
       text-transform: uppercase;
       border-radius: 6px;
     }
+
+    &-def-bd-1 {
+      padding: 13px 19px 12px;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.15;
+      text-transform: uppercase;
+      border-radius: 6px;
+    }
   }
 
   &--theme {
@@ -183,6 +200,24 @@ a {
         background: darken($color2, 10);
       }
     }
+
+    &-dark {
+      border: 1px solid $color2;
+      outline: none;
+      box-shadow: none;
+      // background: $color-main-2;
+      background: transparent;
+      transition: background 0.2s;
+      color: #fff;
+
+      &:hover,
+      &:active,
+      &:focus{
+        color: #fff;
+        background: darken($color2, 10);
+        border-color: darken($color2, 10);
+      }
+    }
   }
 
 
@@ -195,24 +230,24 @@ a {
   margin: 0;
   padding: 0;
   position: relative;
-  width: 58px;
-  height: 58px;
+  width: 44px;
+  height: 44px;
   display: inline-block;
   vertical-align: middle;
 
   text-decoration: none;
   text-align: center;
-  line-height: 58px;
+  line-height: 44px;
   font-style: normal;
   font-family: inherit;
-  // color: `$color-main-6;
+  color: $color2;
   white-space: nowrap;
 
-  border: none;
+  border: 1px solid currentColor;
   outline: none;
   box-shadow: none;
-  // background: `$color-main-5;
-  border-radius: 4px;
+  background: none;
+  border-radius: 50%;
   transition: color 0.2s, background 0.2s;
   cursor: pointer;
 
@@ -223,7 +258,7 @@ a {
   
   &:hover,
   &:active {
-    color: #fff;
+    color: darken($color2, 10);
     // background: `$color-main-3;
   }
 
@@ -235,3 +270,117 @@ a {
 }
 
 
+
+.visible-up {
+  &-sm {
+    display: none;
+    @include media-breakpoint-up(sm) {
+      display: block;
+    }
+  }
+  &-md {
+    display: none;
+    @include media-breakpoint-up(md) {
+      display: block;
+    }
+  }
+  &-lg {
+    display: none;
+    @include media-breakpoint-up(lg) {
+      display: block;
+    }
+  }
+  &-xl {
+    display: none;
+    @include media-breakpoint-up(xl) {
+      display: block;
+    }
+  }
+}
+
+
+
+.hide-up {
+
+  &-sm {
+    @include media-breakpoint-up(sm) {
+      display: none;
+    }
+  }
+
+  &-md {
+    @include media-breakpoint-up(md) {
+      display: none;
+    }
+  }
+  &-lg {
+    @include media-breakpoint-up(lg) {
+      display: none;
+    }
+  }
+  &-xl {
+    @include media-breakpoint-up(xl) {
+      display: none;
+    }
+  }
+}
+
+.hide-down {
+  &-xl {
+    @include media-breakpoint-down(xl) {
+      display: none;
+    }
+  }
+
+  &-lg {
+    @include media-breakpoint-down(lg) {
+      display: none;
+    }
+  }
+
+  &-md {
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
+  }
+
+  &-sm {
+    @include media-breakpoint-down(sm) {
+      display: none;
+    }
+  }
+
+
+
+}
+
+
+@include media-breakpoint-down(lg) {
+}
+
+@include media-breakpoint-down(md) {
+}
+
+@include media-breakpoint-down(sm) {
+}
+
+@include media-breakpoint-down(xs) {
+}
+
+
+
+@include media-breakpoint-up(sm) {
+}
+
+@include media-breakpoint-up(md) {
+}
+
+@include media-breakpoint-up(lg) {
+}
+
+@include media-breakpoint-up(xl) {
+}
+
+/*
+@include rule(, (xs: , lg: ));
+*/
