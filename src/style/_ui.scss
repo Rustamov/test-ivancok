@@ -298,6 +298,33 @@ a {
   }
 }
 
+.visible-up-inline {
+  &-sm {
+    display: none;
+    @include media-breakpoint-up(sm) {
+      display: inline;
+    }
+  }
+  &-md {
+    display: none;
+    @include media-breakpoint-up(md) {
+      display: inline;
+    }
+  }
+  &-lg {
+    display: none;
+    @include media-breakpoint-up(lg) {
+      display: inline;
+    }
+  }
+  &-xl {
+    display: none;
+    @include media-breakpoint-up(xl) {
+      display: inline;
+    }
+  }
+}
+
 
 
 .hide-up {

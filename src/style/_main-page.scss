@@ -29,7 +29,7 @@
         left: 15px;
         right: 15px;
         z-index: 1;
-        font-size: 24px;
+        @include rule(font-size, (xs: 16px, lg: 24px));
         line-height: 1.15;
         font-weight: 800;
         text-transform: uppercase;
@@ -37,6 +37,8 @@
 
     &__image {
       @include fill-img;
+      width: 100%;
+      height: auto;
       z-index: 0;
     }
 
@@ -59,7 +61,8 @@
     &__title {
         display: block;
         margin: 0 0 1em;
-        font-size: 34px;
+        @include rule(font-size, (xs: 26px, lg: 34px));
+
         line-height: (41/34);
         letter-spacing: 0.03em;
     }
@@ -69,12 +72,18 @@
 
 
 .s-features {
-    margin: 0 0 75px;
+    @include rule(margin-bottom, (xs: 35px, lg: 75px));
 
 
-    &__list {
+
+    &__row {
+        margin-top: -30px;
         // display: flex;
     }
+    &__col {
+        padding-top: 30px;
+    }
+
 
     &__item {
         position: relative;
@@ -84,12 +93,13 @@
         height: 100%;
 
         &::before {
-            @include triangle(#fff, right, 32px);
-            top: -22px;
-            right: 26px;
+            @include triangle(#fff, right, 28px);
+            top: -18px;
+            right: 23px;
             z-index: 1;
             transform: rotate(-45deg);
             // border: 1px solid #000;
+            pointer-events: none;
         }
 
         &::after {
@@ -131,22 +141,37 @@
     &__top {
         margin: 0 0 30px;
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
 
         &-col-1 {
-            flex-grow: 1;
             margin-right: 30px;
+            // max-width: 50%;
+            flex-grow: 1;
+            width: calc(100% - 140px);
         }
         &-col-2 {
-            margin-right: 30px;
+            
+            @include rule(order, (xs: 3, lg: 2));
+            @include rule(margin-right, (xs: 0, lg: 30px));
+            @include rule(margin-left, (xs: auto, lg: 0));
         }
+        &-col-3 {
+            // @include rule(order, (xs: 2, lg: 3));
+            @include rule(margin-bottom, (xs: 10px, lg: 0px));
+
+            margin-left: auto;
+        }
+
     }
 
 	&__title {
 		display: block;
 		max-width: 500px;
 		margin: 0;
-        font-size: 30px;
+        // font-size: 30px;
+        @include rule(font-size, (xs: 22px, lg: 30px));
+
         text-transform: none;
 	}
 

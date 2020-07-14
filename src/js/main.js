@@ -40,4 +40,152 @@ $(document).ready(function () {
             ],
         });
     }
+
+    mobileMenu ();
+
+    function mobileMenu () {
+        let mobileNav = $('.mobile-menu'),
+            mobileNavIsOpen = mobileNav.hasClass('open'),
+            openClass = 'mobile-menu-open',
+            opening = false,
+            transitionTime = 300,
+            timeout;
+
+        $body.on('click touch', '.js-mobile-menu-trigger', function (e) {
+            e.preventDefault();
+            navToggle();
+        });
+
+        $body.on('keydown', function(e) {
+            if ( !opening && mobileNavIsOpen && (e.keyCode  === 27)) { // escape key maps to keycode '27'
+                navToggle()
+            };
+        });
+
+        function navToggle() {
+            if ( opening ) {
+                return 
+            }
+        
+            opening = true;
+
+            mobileNavIsOpen = mobileNav.hasClass('open');
+
+            mobileNav.toggleClass('open', !mobileNavIsOpen);
+
+
+            if (!mobileNavIsOpen) {
+                globalOpt.freeze();
+                $body.toggleClass(openClass, true);
+            }
+        
+            if ( timeout ) {
+                clearTimeout(timeout)
+            }
+
+            timeout = setTimeout(function() {
+                mobileNavIsOpen = mobileNav.hasClass('open');
+
+                if (!mobileNavIsOpen) {
+                    $body.toggleClass(openClass, false);
+                    globalOpt.unfreeze();
+                }
+                opening = false;
+            }, transitionTime)
+        };       
+    }
 });
+
+
+
+class makeGlobalOpt {
+    // Скрипт "замораживает" страничку, запрещая скролл
+    freeze() {
+        const h = $('html');
+
+        if (h.css('position') !== 'fixed') {
+            const top = h.scrollTop() ? h.scrollTop() : $body.scrollTop();
+
+            if (window.innerWidth > h.width()) {
+                h.css('overflow-y', 'scroll');
+            }
+
+            h.css({
+                width: '100%',
+                position: 'fixed',
+                top: -top,
+            });
+        }
+    }
+
+    unfreeze() {
+        const h = $('html');
+
+        if (h.css('position') === 'fixed') {
+            h.css('position', 'static');
+
+            $('html, body').scrollTop(-parseInt(h.css('top'), 10));
+
+            h.css({
+                position: '',
+                width: '',
+                top: '',
+                'overflow-y': '',
+            });
+        }
+    }
+
+    headerMenuClose() {
+        $('.header-menu').removeClass('open');
+        $body.removeClass('header-menu-open');
+        this.unfreeze();
+    }
+
+    
+    scrollToId(href, delay) {
+        let scrollOnMenuBtn = false,
+            scrollOnHeaderHide = false,
+            scrollSpeed = 800;
+
+
+        if ( href == '#interior' 
+            || href == '#magazines'
+        ) {
+            scrollOnMenuBtn = true;
+        }
+
+
+        setTimeout(function() {
+            scrollTo();
+        }, delay)
+
+        function scrollTo() {
+
+            let targetOffset = $(href).offset().top;
+
+            // if ( wWidth >= W_MD && scrollOnMenuBtn ) {
+            //     targetOffset -= $('.side-nav__trigger-icon-line--1').offset().top - $('.header').offset().top;
+            // } else if (wWidth < W_MD && !scrollOnHeaderHide) {
+            //     targetOffset -= $('.header').outerHeight();
+            // }
+
+            try {
+                scrollSpeed = Math.abs($window.scrollTop() - targetOffset) / Math.abs($body[0].scrollHeight) * 4000
+            } catch(event) {
+                console.error(event);
+            }
+
+            scrollSpeed = ( scrollSpeed < 500 ) ? 500 : scrollSpeed;
+     
+            $('html, body').animate({ scrollTop: targetOffset }, scrollSpeed);
+
+            location.replace(href);
+            
+        }
+    };
+
+
+}
+   
+
+const globalOpt = new makeGlobalOpt;

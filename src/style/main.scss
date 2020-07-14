@@ -30,7 +30,8 @@ body {
 
 
 .main {
-  padding: 35px 0 105px;
+  @include rule(padding, (xs: 35px 0 65px, lg: 35px 0 105px));
+
 }
 
 
