@@ -30,7 +30,7 @@
         right: 15px;
         z-index: 1;
         @include rule(font-size, (xs: 16px, lg: 24px));
-        line-height: 1.15;
+        line-height: 1.25;
         font-weight: 800;
         text-transform: uppercase;
     }
@@ -73,8 +73,6 @@
 
 .s-features {
     @include rule(margin-bottom, (xs: 35px, lg: 75px));
-
-
 
     &__row {
         margin-top: -30px;
@@ -148,7 +146,8 @@
             margin-right: 30px;
             // max-width: 50%;
             flex-grow: 1;
-            width: calc(100% - 140px);
+            @include rule(width, (xs: calc(100% - 140px), lg: auto));
+
         }
         &-col-2 {
             
@@ -157,7 +156,7 @@
             @include rule(margin-left, (xs: auto, lg: 0));
         }
         &-col-3 {
-            // @include rule(order, (xs: 2, lg: 3));
+            @include rule(order, (xs: 2, lg: 3));
             @include rule(margin-bottom, (xs: 10px, lg: 0px));
 
             margin-left: auto;
